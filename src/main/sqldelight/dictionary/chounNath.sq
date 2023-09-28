@@ -1,0 +1,56 @@
+CREATE TABLE lexicalentry (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    writtenForm TEXT,
+    partOfSpeech TEXT,
+    wordRoot TEXT,
+    pronunciation TEXT
+);
+
+CREATE TABLE synset (
+    id TEXT PRIMARY KEY,
+    baseConcept INTEGER,
+    definition TEXT
+);
+
+CREATE TABLE sense (
+    id TEXT PRIMARY KEY,
+    synsetid TEXT,
+    lexicalEntryId INTEGER
+);
+
+CREATE TABLE statement (
+    id INTEGER PRIMARY KEY,
+    example TEXT,
+    synsetId TEXT
+);
+
+selectAllWords:
+SELECT * FROM lexicalentry;
+
+findWord:
+SELECT *
+FROM lexicalentry
+WHERE writtenForm LIKE :searchWord || '%';
+
+selectDifinition:
+SELECT syn.definition
+FROM lexicalentry AS le
+JOIN sense AS s ON le.id = s.lexicalEntryId
+JOIN synset AS syn ON s.synsetid = syn.id
+WHERE le.id = :id;
+
+selectExample:
+SELECT st.example
+FROM lexicalentry AS le
+JOIN sense AS s ON le.id = s.lexicalEntryId
+JOIN statement AS st ON s.synsetid = st.synsetId
+WHERE le.id = :id;
+
+selectWord:
+SELECT writtenForm FROM lexicalentry WHERE id = :id;
+
+selectPronunciation:
+SELECT pronunciation FROM lexicalentry WHERE id = :id;
+
+selectPartOfSpeech:
+SELECT partOfSpeech FROM lexicalentry WHERE id = :id;

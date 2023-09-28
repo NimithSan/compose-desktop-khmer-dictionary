@@ -1,0 +1,2 @@
+# compose desktop khmer dictionary
+ 

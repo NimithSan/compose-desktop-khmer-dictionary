@@ -76,7 +76,7 @@ fun App() {
                         )
                     }
                     var selectedIndex by remember {
-                        mutableStateOf(0)
+                        mutableStateOf(-1)
                     }
                     Box {
                         LazyColumn(state = state) {

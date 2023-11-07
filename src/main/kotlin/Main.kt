@@ -35,7 +35,9 @@ fun App() {
     val list = mutableStateListOf<Lexicalentry>()
     var findWord by remember { mutableStateOf("") }
     var wordId by remember { mutableStateOf("1") }
-
+    var selectedIndex by remember {
+        mutableStateOf(-1)
+    }
     val state = rememberLazyListState()
 
     LaunchedEffect(Unit) {
@@ -60,6 +62,7 @@ fun App() {
                         OutlinedTextField(
                             value = findWord,
                             onValueChange = {newText ->
+                                selectedIndex = -1
                                 findWord = newText
                                 list.clear()
                                 list.addAll(database.chounNathQueries.findWord(searchWord = findWord).executeAsList())
@@ -75,9 +78,7 @@ fun App() {
                             )
                         )
                     }
-                    var selectedIndex by remember {
-                        mutableStateOf(-1)
-                    }
+
                     Box {
                         LazyColumn(state = state) {
                             itemsIndexed(list) { index,it ->

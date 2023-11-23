@@ -4,6 +4,10 @@
 * Compose Desktop<br>
 + SqlDelight<br>
 # App Preview
-![preview](https://github.com/NimithSan/compose-desktop-khmer-dictionary/blob/main/preview/video_preview.gif?raw=true)<br>
+
+<div style="border: 2px solid #ddd; padding: 5px; text-align: center;">
+    <img src="/preview/video_preview.gif" alt="Front End Image" style="width:100%;">
+</div>
+
 
 >Have a nice day.!
